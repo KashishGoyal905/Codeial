@@ -9,8 +9,7 @@ console.log('router loaded');
 
 // home route // using controllers
 router.get('/', homeController.home);
-router.get('/about', homeController.about);
-
+router.use('/users', require('./users'));
 
 
 
