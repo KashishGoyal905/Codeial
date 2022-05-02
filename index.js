@@ -2,11 +2,20 @@ const express = require('express');
 const port = 8000;
 const app = express();
 
-// using express router 
-app.use('/', require('./Routes'));
+// connecing 
+const db = require('./config/mongoose');
+
+
 // setting view engines
-app.set('view engine', ejs);
-app.set('views','./views');
+app.set('view engine', 'ejs');
+app.set('views', './views');
+// parser convert encoded to readable and send to route 
+app.use(express.urlencoded());
+
+
+// using express router  tellin gmain file to take further routes from / to routes/index.js file
+app.use('/', require('./Routes'));
+
 
 app.listen(port, (err) => {
     if (err) {
@@ -15,3 +24,4 @@ app.listen(port, (err) => {
     }
     console.log(`Server is listening on port - ${port}`)
 });
+

@@ -1,8 +1,24 @@
+const Todos = require('../models/data');
+
+
 // /->home function //exporting controller for aceesing in routes
 module.exports.home = function (req, res) {
-    res.end('<h1>Home</h1>');
+    Todos.find({}, (err, Todos) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        return res.render('home', { title: 'home', todo_list: Todos });
+    })
 }
 
-module.exports.about = function (req, res) {
-    res.end('<h1>About</h1>');
+module.exports.delete = function(req, res){
+    let id = req.params._id;
+    Todos.findByIdAndDelete(id, (err) => {
+        if (err) {
+            console.log("error in deleting contact");
+            return;
+        }
+        return res.redirect('back');
+    })
 }

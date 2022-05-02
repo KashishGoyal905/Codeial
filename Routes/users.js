@@ -9,4 +9,4 @@ const postsController = require('../Controllers/posts_controllers');
 router.get('/profile', userController.profile);
 router.get('/posts', postsController.posts);
 
-module.exports = router;
+module.exports = router;    
